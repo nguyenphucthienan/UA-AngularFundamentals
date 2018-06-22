@@ -8,8 +8,18 @@ import { Component } from '@angular/core';
       <h1 [innerHTML]="title"></h1>
       <img [src]="logo">
       <div>
-        <input type="text" [value]="name">
+        <button (click)="handleClick()">
+          Change Name
+        </button>
       </div>
+      <div>
+        <input 
+          type="text" 
+          [value]="name"
+          (input)="handleInput($event)"
+          (blur)="handleBlur($event)">
+      </div>
+      <div>{{ name }}</div>
     </div>
   `
 })
@@ -20,5 +30,17 @@ export class AppComponent {
 
   constructor() {
     this.title = 'Ultimate Angular';
+  }
+
+  handleClick() {
+    this.name = "An Nguyen";
+  }
+
+  handleInput(event: any) {
+    this.name = event.target.value;
+  }
+
+  handleBlur(event: any) {
+    this.name = event.target.value;
   }
 }
