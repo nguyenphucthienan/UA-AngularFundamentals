@@ -8,16 +8,10 @@ import { Component } from '@angular/core';
       <h1 [innerHTML]="title"></h1>
       <img [src]="logo">
       <div>
-        <button (click)="handleClick()">
+        <button (click)="handleClick(username.value)">
           Change Name
         </button>
-        <input 
-          type="text" 
-          [ngModel]="name"
-          (ngModelChange)="handleChange($event)">
-        <input 
-          type="text" 
-          [(ngModel)]="name">
+          <input type="text" #username>
       </div>
       <div>{{ name }}</div>
     </div>
@@ -26,17 +20,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title: string;
   logo: string = 'img/logo.svg';
-  name: string = 'An';
+  name: string;
 
   constructor() {
     this.title = 'Ultimate Angular';
   }
 
-  handleClick() {
-    this.name = "An Nguyen";
-  }
-
-  handleChange(value: string) {
-    this.name = value
+  handleClick(value: string) {
+    this.name = value;
   }
 }
