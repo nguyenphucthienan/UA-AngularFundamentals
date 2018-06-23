@@ -8,25 +8,25 @@ import { Component } from '@angular/core';
       <h1 [innerHTML]="title"></h1>
       <img [src]="logo">
       <div>
-        <button (click)="handleClick(username.value)">
-          Change Name
-        </button>
-          <input type="text" #username>
+        <input
+          type="text"
+          [value]="name"
+          (input)="handleChange($event.target.value)">
       </div>
-      <div>{{ name }}</div>
+      <div *ngIf="name.length > 2">Searching for... {{ name }}</div>
     </div>
   `
 })
 export class AppComponent {
   title: string;
   logo: string = 'img/logo.svg';
-  name: string;
+  name: string = '';
 
   constructor() {
     this.title = 'Ultimate Angular';
   }
 
-  handleClick(value: string) {
+  handleChange(value: string) {
     this.name = value;
   }
 }
