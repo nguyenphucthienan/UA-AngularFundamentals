@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PassengerDashboardService } from '../../passenger-dashboard.service';
 
@@ -17,6 +18,7 @@ import { Passenger } from '../../models/passenger.interface';
       <passenger-detail 
         *ngFor="let passenger of passengers;"
         [detail]="passenger"
+        (view)="handleView($event)"
         (edit)="handleEdit($event)"
         (remove)="handleRemove($event)">
       </passenger-detail>
@@ -27,12 +29,17 @@ export class PassengerDashboardComponent implements OnInit {
   logo: string = 'img/logo.svg';
   passengers: Passenger[];
 
-  constructor(private passengerService: PassengerDashboardService) { }
+  constructor(private router: Router,
+    private passengerService: PassengerDashboardService) { }
 
 
   ngOnInit() {
     this.passengerService.getPassengers()
       .subscribe((passengers: Passenger[]) => this.passengers = passengers);
+  }
+
+  handleView(event: Passenger) {
+    this.router.navigate(['/passengers', event.id]);
   }
 
   handleEdit(event: Passenger) {
