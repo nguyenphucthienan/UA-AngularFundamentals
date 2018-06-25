@@ -20,7 +20,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     PassengerDashboardModule
   ],
   bootstrap: [AppComponent]
