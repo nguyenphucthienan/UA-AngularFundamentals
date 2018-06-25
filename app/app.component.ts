@@ -11,6 +11,7 @@ interface Nav {
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
+      <img [src]="logo" class="logo">
       <nav class="nav">
         <a 
           *ngFor="let item of nav"
@@ -24,6 +25,7 @@ interface Nav {
   `
 })
 export class AppComponent {
+  logo: string = 'img/logo.svg';
   nav: Nav[] = [
     {
       link: '/',

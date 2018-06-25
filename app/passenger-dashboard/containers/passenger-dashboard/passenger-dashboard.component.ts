@@ -10,11 +10,7 @@ import { Passenger } from '../../models/passenger.interface';
   styleUrls: ['passenger-dashboard.component.scss'],
   template: `
     <div>
-      <img [src]="logo">
       <passenger-count [items]="passengers"></passenger-count>
-      <div *ngFor="let passenger of passengers;">
-        {{ passenger.fullName }}
-      </div>
       <passenger-detail 
         *ngFor="let passenger of passengers;"
         [detail]="passenger"
@@ -26,7 +22,6 @@ import { Passenger } from '../../models/passenger.interface';
   `
 })
 export class PassengerDashboardComponent implements OnInit {
-  logo: string = 'img/logo.svg';
   passengers: Passenger[];
 
   constructor(private router: Router,
